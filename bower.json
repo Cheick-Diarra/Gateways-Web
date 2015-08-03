@@ -1,0 +1,24 @@
+{
+  "name": "Gateways-Web",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Cheick-Diarra/Gateways-Web",
+  "authors": [
+    "Cheick Diarra <diarra.tiemoko@mca.christuniversity.in>"
+  ],
+  "description": "Website for the Gateways 2015  event Christ University",
+  "main": "index.html",
+  "license": "Christ University",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-elements": "PolymerElements/iron-elements#~1.0.3",
+    "paper-elements": "PolymerElements/paper-elements#~1.0.3",
+    "neon-elements": "PolymerElements/neon-elements#~1.0.0"
+  }
+}
