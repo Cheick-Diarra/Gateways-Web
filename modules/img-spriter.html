@@ -1,0 +1,119 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+
+<dom-module id="img-spriter">
+
+  <style>
+
+    host {
+      positon : relative;
+    }
+
+  </style>
+
+  <template>
+    <canvas id="canvas" width="{{ canvasSizeFilter(size) }}" height="{{size}}"></canvas>
+    <div hidden>
+      <content class="images" select="img"></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is : "img-spriter" ,
+
+      properties : {
+        reverse : Boolean ,
+        sprites : Number,
+        size : Number
+      },
+
+      host : this,
+      canvas : null,
+      context : null,
+      image : null,
+      iHeight : 0,
+      idleFrames : 5,
+      ratio : 0,
+
+      getImg : function () {
+
+        var image = this.getContentChildren(".images")[0];
+
+        if( image != null )
+          return image;
+        else {
+          console.error("img-stpriter" , "Can't find image");
+          return image;
+        }
+      },
+
+      animator : function ( image , canvas , sprites , idleFrames ) {
+
+        var reverse = false;
+        var context = canvas.getContext('2d');
+        var frameCounter = 0;
+        var imageLopper = 0;
+
+        var animate = function(time) {
+          if(frameCounter == 0 ) {
+            var strip_width = image.width / sprites;
+            var strip_index = strip_width * imageLopper;
+            context.clearRect(0,0,canvas.width,canvas.height);
+            context.drawImage(image ,  strip_index , 0 , strip_width , image.height , 0 , 0 , canvas.width , canvas.height);
+            imageLopper = (imageLopper + 1) % sprites;
+          }
+
+          frameCounter = (frameCounter + 1) % idleFrames;
+
+          requestAnimationFrame(animate);
+       }
+
+       this.startAnimation = function() {
+         requestAnimationFrame(animate);
+       }
+
+      },
+
+      canvasSizeFilter : function (value) {
+        return value*this.ratio;
+      },
+
+
+      ready : function () {
+
+        console.log(this);
+
+        if (this.sprites == undefined || this.sprites == null )
+          this.sprites = 6;
+
+        this.canvas = this.$$("#canvas");
+
+        if ( this.canvas == undefined || this.canvas == null ) {
+          console.error("img-spriter" , "canvas cannot be found");
+          return;
+        }
+        else {
+          this.context = this.canvas.getContext("2d");
+        }
+        this.image = this.getImg();
+
+        if( this.image == null || this.image == undefined ) {
+          console.error("img-spriter" , "cannot find image");
+          return;
+        }else {
+          this.ratio = (this.image.width/this.sprites) / this.image.height;
+          console.log("img-spriter" , "height" , this.height);
+          //var cvHeight = 100;
+          //var cvWidth = cvHeight * ratio;
+          //this.canvas.width = cvWidth;
+          //this.canvas.height = cvHeight;
+        }
+
+        var animator = new this.animator(this.image , this.canvas , this.sprites , this.idleFrames);
+        animator.startAnimation();
+      }
+
+
+    });
+  </script>
+</dom-module>
