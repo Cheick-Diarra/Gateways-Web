@@ -10,6 +10,7 @@
     <link rel="import" href="../modules/timeline-events.html">
     <link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
     <link rel="import" href="../modules/event-tooltip.html">
+    <link rel="import" href="../libraries/paper-card/paper-card.html">
 
 
     <style media="screen">
@@ -52,6 +53,10 @@
         background-color: #b91d47;
       }
 
+      .padded {
+        padding: 100px;
+      }
+
 
     </style>
   </head>
@@ -61,18 +66,44 @@
       <img src="../resources/img/kid_walking_strips.png"/>
     </img-spriter> -->
 
+    <div id="impress">
+      <div class="step" data-x="0" data-y="0" data-z="-300">
+        <paper-card heading="Eventsdfsafsdfs1">
+          <div class="padded">
+
+          </div>
+
+      </paper-card>
+      </div>
+      <div class="step" data-x="500" data-y="100" data-z="-600">
+        <paper-card heading="Eventasdfvdfvdf2">
+
+        </paper-card>
+      </div>
+
+      <div class="step" data-x="300" data-y="200" data-z="-800" data-scale="0.5">
+        <paper-card heading="Starts Here">
+
+        </paper-card>
+      </div>
+    </div>
+
     <div class="container vertical end-justified layout">
       <!-- <event-tooltip></event-tooltip> -->
 
-      <div id="impress">
-        <div class="step" data-x="0" data-y="0" data-z="-300">
-          <h1>Event1</h1>
-        </div>
-        <div class="step" data-x="0" data-y="100" data-z="-300">
-            <h1>Event2</h1>
-        </div>
-      </div>
     <timeline-events >
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
       <div class="dot"></div>
       <div class=connect></div>
       <div class="dot"></div>
@@ -97,5 +128,6 @@
 
   <script src="../libraries/impress.js-master/js/impress.js"></script>
   <script>impress().init();</script>
+  <script>impress().goto(1);</script>
   </body>
 </html>
