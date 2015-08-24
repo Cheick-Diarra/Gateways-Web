@@ -1,0 +1,63 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../libraries/paper-card/paper-card.html">
+
+
+<dom-module id="event-tooltip">
+
+  <style>
+
+    paper-card {
+      left : 10px;
+    }
+    .container {
+      margin: 0;
+      margin-top: -50px;
+      padding: 0;
+      width : 250px;
+      height : 250px;
+
+
+    }
+
+    .info {
+      width : 250px;
+      height: 200px;
+      border-radius: 10px;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-top: 50px solid #f00;
+      border-radius: 100px;
+    }
+
+  </style>
+
+  <template>
+
+    <div class="container vertical layout">
+      <paper-card heading="tooltip" class="info">
+        <div >
+
+        </div>
+      </paper-card>
+        <!-- <div class="horizontal layout">
+          <div class="flex"></div>
+          <div class="arrow"></div>
+          <div class="flex"></div>
+        </div> -->
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is : 'event-tooltip'
+    });
+  </script>
+
+</dom-module>

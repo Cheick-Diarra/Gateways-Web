@@ -1,0 +1,57 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="timeline-events">
+
+  <style>
+    div.timeline {
+      width : 100%;
+      height: 50px;
+      background-color: #1d1d1d;
+    }
+
+
+
+  </style>
+
+  <template>
+    <div class="timeline vertical layout">
+
+        <div class="flex"></div>
+        <div id="dot-container" class="horizontal layout">
+          <div  class="flex"></div>
+          <content select="div">
+          </content>
+          <div  class="flex"></div>
+        </div>
+        <div  class="flex"></div>
+
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      ready : function () {
+
+        var content = this.$$('content');
+        var distributed = Polymer.dom(content).getDistributedNodes();
+
+        console.log(distributed[1]);
+
+        for ( var i = distributed.length-1 ; i >= 0 ; i--) {
+          if(this.hasClass(distributed[i] , 'dot' )) {
+            distributed[i].addEventListener('mouseover' , function() {
+              console.log(event.clientX);
+            })
+          }
+        }
+      },
+
+      hasClass : function (element, cls) {
+          return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+      }
+    });
+  </script>
+
+</dom-module>

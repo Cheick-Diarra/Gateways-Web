@@ -4,22 +4,98 @@
     <meta charset="utf-8">
     <title>DemoD</title>
     <script src="../libraries/webcomponentsjs/webcomponents-lite.min.js"></script>
+
     <link rel="import" href="../libraries/polymer/polymer.html">
     <link rel="import" href="../modules/img-spriter.html">
+    <link rel="import" href="../modules/timeline-events.html">
+    <link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="../modules/event-tooltip.html">
+
+
+    <style media="screen">
+
+      #kid1 {
+        position : absolute;
+        float: right;
+      }
+
+      html , body {
+
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+
+
+      div.dot {
+        background-color: #eff4ff;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      div.connect {
+
+        margin-top: 4px;
+        height: 1px;
+        width: 40px;
+        background-color: #b91d47;
+      }
+
+
+    </style>
   </head>
-
-  <style media="screen">
-
-    #kid1 {
-      position : absolute;
-      float: right;
-    }
-  </style>
   <body>
 
-    <img-spriter id="kid1" size="500">
+    <!-- <img-spriter id="kid1" size="500">
       <img src="../resources/img/kid_walking_strips.png"/>
-    </img-spriter>
+    </img-spriter> -->
 
+    <div class="container vertical end-justified layout">
+      <!-- <event-tooltip></event-tooltip> -->
+
+      <div id="impress">
+        <div class="step" data-x="0" data-y="0" data-z="-300">
+          <h1>Event1</h1>
+        </div>
+        <div class="step" data-x="0" data-y="100" data-z="-300">
+            <h1>Event2</h1>
+        </div>
+      </div>
+    <timeline-events >
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+      <div class=connect></div>
+      <div class="dot"></div>
+    </timeline-events>
+  </div>
+
+  <script src="../libraries/impress.js-master/js/impress.js"></script>
+  <script>impress().init();</script>
   </body>
 </html>

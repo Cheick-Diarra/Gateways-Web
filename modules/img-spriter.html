@@ -102,11 +102,8 @@
           return;
         }else {
           this.ratio = (this.image.width/this.sprites) / this.image.height;
-          console.log("img-spriter" , "height" , this.height);
-          //var cvHeight = 100;
-          //var cvWidth = cvHeight * ratio;
-          //this.canvas.width = cvWidth;
-          //this.canvas.height = cvHeight;
+          this.size++;
+          this.size--;
         }
 
         var animator = new this.animator(this.image , this.canvas , this.sprites , this.idleFrames);
