@@ -1,0 +1,100 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/neon-animation/neon-animation.html">
+<link rel="import" href="../libraries/neon-animation/neon-animations.html">
+<link rel="import" href="../libraries/neon-animation/animations/scale-down-animation.html">
+
+
+
+
+<dom-module id="first-animatable">
+
+<style>
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  div.ball {
+    margin: auto;
+    width : 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: red;
+  }
+</style>
+
+  <template>
+    <div id="container" class="container">
+    <div class="ball" id="bll"></div>
+    <div>
+  </template>
+
+  <script>
+    Polymer({
+      is : 'first-animatable',
+
+      opened : false,
+
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+
+      properties : {
+        animationConfig: {
+          value : function () {
+            return {
+              // provided by neon-animation/animations/scale-down-animation.html
+              'exit' : {name: 'slide-right-animation',
+              node: this.$.container},
+
+              'entry' : {name: 'slide-from-left-animation' ,
+              node: this.$.container}
+            }
+          }
+        }
+      },
+
+      listeners : { 'neon-animation-finish' : '_onNeonAnimationFinish'} ,
+
+      ready : function () {
+        var host = this;
+        this.opened = false;
+        host.animate('entry');
+        this.$$("#bll").onclick = function () { host.animate('exit'); };
+      },
+
+      show : function () {
+        if(this.opened == false) {
+          this.$.container.style.display = "block";
+          this.opened = true;
+        }
+      },
+
+      hide : function () {
+
+        if(this.opened == true) {
+          this.$.container.style.display = "none";
+          this.opened = false;
+        }
+      },
+
+      animate : function (which) {
+        this.playAnimation(which);
+      },
+
+      _onNeonAnimationFinish : function () {
+
+        console.log('Animation Finished');
+
+        if(this.opened == true)
+          this.hide();
+        else {
+          this.show();
+        }
+      }
+    });
+  </script>
+
+</dom-module>

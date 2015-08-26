@@ -11,6 +11,12 @@
     <link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
     <link rel="import" href="../modules/event-tooltip.html">
     <link rel="import" href="../libraries/paper-card/paper-card.html">
+    <link rel="import" href="../libraries/iron-pages/iron-pages.html">
+    <link rel="import" href="../libraries/neon-animation/neon-animation.html">
+    <link rel="import" href="../libraries/neon-animation/neon-animations.html">
+    <link rel="import" href="../libraries/neon-animation/neon-animated-pages.html">
+    <link rel="import" href="../libraries/neon-animation/neon-animatable.html">
+    <link rel="import" href="../modules/first-animatable.html">
 
 
     <style media="screen">
@@ -29,7 +35,7 @@
 
       }
 
-      .container {
+      div.container {
         width: 100%;
         height: 100%;
         margin: 0;
@@ -53,8 +59,19 @@
         background-color: #b91d47;
       }
 
+      div.pages {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+
       .padded {
         padding: 100px;
+      }
+
+      .test {
+        height: 700px;
+        margin-top: -50px;
       }
 
 
@@ -66,30 +83,16 @@
       <img src="../resources/img/kid_walking_strips.png"/>
     </img-spriter> -->
 
-    <div id="impress">
-      <div class="step" data-x="0" data-y="0" data-z="-300">
-        <paper-card heading="Eventsdfsafsdfs1">
-          <div class="padded">
-
-          </div>
-
-      </paper-card>
-      </div>
-      <div class="step" data-x="500" data-y="100" data-z="-600">
-        <paper-card heading="Eventasdfvdfvdf2">
-
-        </paper-card>
-      </div>
-
-      <div class="step" data-x="300" data-y="200" data-z="-800" data-scale="0.5">
-        <paper-card heading="Starts Here">
-
-        </paper-card>
-      </div>
-    </div>
 
     <div class="container vertical end-justified layout">
       <!-- <event-tooltip></event-tooltip> -->
+
+    <div class="pages flex">
+
+      <first-animatable class="flex"></first-animatable>
+
+
+    </div>
 
     <timeline-events >
       <div class="dot"></div>
@@ -126,8 +129,8 @@
     </timeline-events>
   </div>
 
-  <script src="../libraries/impress.js-master/js/impress.js"></script>
+  <!-- <script src="../libraries/impress.js-master/js/impress.js"></script>
   <script>impress().init();</script>
-  <script>impress().goto(1);</script>
+  <script>impress().goto(1);</script> -->
   </body>
 </html>
