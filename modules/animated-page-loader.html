@@ -1,0 +1,148 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/neon-animation/neon-animation.html">
+<link rel="import" href="../libraries/neon-animation/neon-animations.html">
+
+
+<dom-module id="animated-page-loader">
+
+  <template>
+    <content id="content" select="div"></content>
+  </template>
+
+  <script>
+    Polymer({
+      is : 'animated-page-loader',
+
+      // component properties
+
+      lastSelected : 0,
+      pages : [],
+      pageLoaded : false,
+
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+
+      properties : {
+        selected : {
+          type : Number,
+          observer : '_onSelectedChanged'
+        },
+
+        animationConfig : {
+          value : function () {
+            return {
+              'left-entry' : {name: 'slide-from-left-animation' , node : function() { return this.pages[this.selected] } },
+              'right-entry' : {name: 'slide-from-right-animation' , node : function() { return this.pages[this.selected] } },
+              'left-exit' : {name: 'slide-left-animation' , node : function() { return this.pages[this.selected] } },
+              'right-exit' : {name: 'slide-right-animation' , node : function() { return this.pages[this.selected] } }
+            }
+          }
+        }
+      },
+
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+
+      ready : function () {
+
+        var content = this.$.content;
+
+        this.pages = Polymer.dom(content).getDistributedNodes();
+
+        console.log(this.pages[0]);
+
+        if(this.selected == null || this.selected == undefined ) {
+          this.lastSelected = 0;
+          this.selected = 0;
+        }
+
+        for(var i =0 ; i<this.pages.length ; i++) {
+          this._hide(this.pages[i])
+        }
+
+        console.log(this.selected);
+        this._show(this.pages[this.selected]);
+
+        this.pageLoaded = true;
+
+      },
+
+      _onNeonAnimationFinish : function () {
+
+        this._hide(this.pages[this.lastSelected]);
+        //this._show(this.pages[this.selected]);
+        this.lastSelected = this.selected;
+
+      },
+
+
+      _onSelectedChanged : function () {
+
+        if(this.pageLoaded == false)
+          return;
+
+        console.log(this.pages[this.selected]);
+        console.log(this.pages[this.lastSelected]);
+
+        this.animationConfig = [];
+          // {'left-entry' : {name: 'slide-from-left-animation' , node : this.pages[this.selected]} },
+          // {'right-entry' : {name: 'slide-from-right-animation' , node : this.pages[this.selected]} },
+          // {'left-exit' : {name: 'slide-left-animation' , node : this.pages[this.lastSelected]} },
+          // {'right-exit' : {name: 'slide-right-animation' , node :this.pages[this.lastSelected]} }];
+
+        // var entry = '';
+        // var exit = '';
+        //
+        // if( this.selected < this.lastSelected ) {
+        //   entry = 'right-entry';
+        //   exit = 'left-exit';
+        // }
+        // else {
+        //   entry = 'left-entry';
+        //   exit = 'right-exit';
+        // }
+
+        var page_entry_animation = 'slide-from-left-animation';
+        var page_exit_animation = 'slide-right-animation';
+
+        if(this.selected > this.lastSelected) {
+          page_entry_animation = 'slide-from-right-animation';
+          page_exit_animation = 'slide-left-animation';
+        }
+        var newPage = this.pages[this.selected];
+        var oldPage = this.pages[this.lastSelected];
+
+
+        this.animationConfig.push({ name : page_exit_animation , node : oldPage });
+        this.animationConfig.push({ name : page_entry_animation , node : newPage });
+
+        this._show(newPage);
+        this.playAnimation(undefined, {
+          fromPage: oldPage,
+          toPage: newPage
+        });
+        //this._animate(exit);
+
+        //this._animate(entry);
+
+        console.log('selected changed');
+
+      },
+
+      _animate : function(which) {
+        this.playAnimation(which);
+      },
+
+      _hide : function(page) {
+        page.style.display = 'none';
+      },
+
+      _show : function(page) {
+        page.style.display = 'inline-block';
+      }
+    });
+  </script>
+
+</dom-module>
