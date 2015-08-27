@@ -62,9 +62,8 @@
           this._hide(this.pages[i])
         }
 
-        console.log(this.selected);
         this._show(this.pages[this.selected]);
-
+        
         this.pageLoaded = true;
 
       },
@@ -72,7 +71,6 @@
       _onNeonAnimationFinish : function () {
 
         this._hide(this.pages[this.lastSelected]);
-        //this._show(this.pages[this.selected]);
         this.lastSelected = this.selected;
 
       },
@@ -83,26 +81,7 @@
         if(this.pageLoaded == false)
           return;
 
-        console.log(this.pages[this.selected]);
-        console.log(this.pages[this.lastSelected]);
-
         this.animationConfig = [];
-          // {'left-entry' : {name: 'slide-from-left-animation' , node : this.pages[this.selected]} },
-          // {'right-entry' : {name: 'slide-from-right-animation' , node : this.pages[this.selected]} },
-          // {'left-exit' : {name: 'slide-left-animation' , node : this.pages[this.lastSelected]} },
-          // {'right-exit' : {name: 'slide-right-animation' , node :this.pages[this.lastSelected]} }];
-
-        // var entry = '';
-        // var exit = '';
-        //
-        // if( this.selected < this.lastSelected ) {
-        //   entry = 'right-entry';
-        //   exit = 'left-exit';
-        // }
-        // else {
-        //   entry = 'left-entry';
-        //   exit = 'right-exit';
-        // }
 
         var page_entry_animation = 'slide-from-left-animation';
         var page_exit_animation = 'slide-right-animation';
@@ -111,6 +90,7 @@
           page_entry_animation = 'slide-from-right-animation';
           page_exit_animation = 'slide-left-animation';
         }
+
         var newPage = this.pages[this.selected];
         var oldPage = this.pages[this.lastSelected];
 
@@ -119,13 +99,7 @@
         this.animationConfig.push({ name : page_entry_animation , node : newPage });
 
         this._show(newPage);
-        this.playAnimation(undefined, {
-          fromPage: oldPage,
-          toPage: newPage
-        });
-        //this._animate(exit);
-
-        //this._animate(entry);
+        this.playAnimation();
 
         console.log('selected changed');
 

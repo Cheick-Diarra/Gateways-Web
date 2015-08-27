@@ -32,20 +32,49 @@
   <script>
     Polymer({
 
+      is : 'timeline-events',
+
+      milestones : [],
+
+      properties : {
+        selected : {
+          type : Number,
+          notify : true
+        }
+      },
+
       ready : function () {
 
+        var host = this;
         var content = this.$$('content');
         var distributed = Polymer.dom(content).getDistributedNodes();
+        this.milestones = distributed;
+        var dotCounter = 0;
 
-        console.log(distributed[1]);
-
-        for ( var i = distributed.length-1 ; i >= 0 ; i--) {
+        for ( var i = 0 ; i < distributed.length ; i++) {
           if(this.hasClass(distributed[i] , 'dot' )) {
+
+            distributed[i].eventIndex = dotCounter;
+            
             distributed[i].addEventListener('mouseover' , function() {
-              console.log(event.clientX);
-            })
+              host._onHoverEvent(i , event);
+            });
+
+            distributed[i].addEventListener('click' , function() {
+              host._onClickEvent(this.eventIndex , event);
+            });
+            dotCounter++;
           }
         }
+      },
+
+      _onHoverEvent : function (index , event) {
+          console.log("hover" , event.clientX);
+      },
+
+      _onClickEvent : function (index , event) {
+        console.log("index" , index);
+        this.selected = index;
       },
 
       hasClass : function (element, cls) {

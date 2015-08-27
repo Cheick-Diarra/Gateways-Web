@@ -97,55 +97,56 @@
       <img src="../resources/img/kid_walking_strips.png"/>
     </img-spriter> -->
 
+    <template is="dom-bind">
+      <div class="container vertical end-justified layout">
+        <!-- <event-tooltip></event-tooltip> -->
 
-    <div class="container vertical end-justified layout">
-      <!-- <event-tooltip></event-tooltip> -->
+        <div class="pages flex">
+          <animated-page-loader selected="{{currentPage}}">
+            <div class="container red"><h1>First Page</h1></div>
+            <div class="container blue"><h1>Second Page</h1></div>
+            <div class="container green"><h1>Third Page</h1></div>
+            <div class="container red"><h1>Fourth Page</h1></div>
+            <div class="container blue"><h1>Fifth Page</h1></div>
+            <div class="container green"><h1>Sixth Page</h1></div>
+          </animated-page-loader>
+        </div>
 
-    <div class="pages flex">
-      <animated-page-loader selected="0">
-        <div class="container red"><h1>First Page</h1></div>
-        <div class="container blue"><h1>Second Page</h1></div>
-        <div class="container green"><h1>Third Page</h1></div>
-        <div class="container red"><h1>Fourth Page</h1></div>
-        <div class="container blue"><h1>Fifth Page</h1></div>
-        <div class="container green"><h1>Sixth Page</h1></div>
-      </animated-page-loader>
-    </div>
-
-    <timeline-events >
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-      <div class=connect></div>
-      <div class="dot"></div>
-    </timeline-events>
-  </div>
+        <timeline-events selected="{{currentPage}}">
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+          <div class=connect></div>
+          <div class="dot"></div>
+        </timeline-events>
+      </div>
+    </template>
 
   <!-- <script src="../libraries/impress.js-master/js/impress.js"></script>
   <script>impress().init();</script>
