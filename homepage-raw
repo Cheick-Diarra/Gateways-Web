@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title> Homepage </title>
+	<link href="in1.css" rel="stylesheet">
+</head>
+<body s>
+	<section id="body" >
+		<h1 align="center"> GATEWAYS </h1>
+		<h2 align="center">Experience the journey</h2>
+		<!-- <img src="yin-yang.jpg" style="height:100%;width:100%;"> -->
+		<img id="event" src="eventsbutton.png">
+		<!-- <img id="login" src="loginbutton.png"> -->
+		<!-- <img id="register" src="registerbutton.png"> -->
+		<img id="out" src="outerbutton.png">
+	</section>
+	<!-- <footer id="sponsor" >
+		<h4 align="center"></h4>
+	</footer> -->
+</body>
+</html>
