@@ -1,84 +1,192 @@
-<link rel="import" href="../libraries/polymer/polymer.html">
-<link rel="import" href="../libraries/paper-card/paper-card.html">
 <link rel="import" href="../libraries/iron-flex-layout/classes/iron-flex-layout.html">
-<link rel="import" href="../libraries/paper-tabs/paper-tab.html">
+<link rel="import" href="../libraries/paper-item/paper-item.html">
 <link rel="import" href="../libraries/paper-tabs/paper-tabs.html">
+<link rel="import" href="../libraries/paper-tabs/paper-tab.html">
+<link rel="import" href="../libraries/paper-card/paper-card.html">
+<link rel="import" href="../libraries/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../libraries/iron-pages/iron-pages.html">
 
 <dom-module id="event-interface">
-    <style>
-        .absolute {
-          position : absolute;
-        }
+  <style>
+    article {
+      width: 100%;
+      height: 100%;
+    }
+    header {
+      background-image: url("gaming.png");
+      background-color: #34495e;
+      width: 100%;
+      height: 350px;
+    }
 
-        .fullwidth {
-          width : 100%;
-        }
+    footer {
+      background-color: #ecf0f1;
+      width: 100%;
+      height: 100px;
+      bottom: 0;
+      color : #2c3e50;
 
-        .fullheight {
-          height: 100%;
-        }
+    }
 
-        div.banner {
-          margin-top : -20px;
-          height : 50%;
-          color: white;
-          background-color: grey;
-        }
+    .line {
+      margin: auto;
+      height: 2px;
+      width: 80%;
+      background-color: #34495e;
+    }
 
-        div.logo {
-          margin: auto;
-          width : 100px;
-          height: 100px;
-          border-radius: 50%;
-          background-color: blue;
-        }
+    header > div {
+      margin : auto;
+      width : 80%;
+      color : white;
+    }
 
-        div.container {
-          width: 100%;
-          height: 300px;
-          padding: 0;
-        }
+    h1 {
+      font-weight: 300;
+    }
 
-        .grey {
-          background-color: grey;
-        }
+    h3 {
+      font-weight: lighter;
+    }
 
-        .center {
-          top: 50%;
-        }
-        paper-tabs, paper-toolbar {
-          color: #fff;
-          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-        }
+    div.menu {
+      width : 300px;
+      margin-bottom: 50px;
+    }
 
-    </style>
+    paper-tabs {
+      --paper-tabs-selection-bar-color: white;
+    }
 
-    <template>
-        <div class="grey container vertical end-justified layout">
+    paper-tabs paper-tab::shadow #ink {
+      color: white;
+    }
 
+    main {
+      width : 80%;
+      margin: auto;
+      margin-top: -70px;
+    }
+
+    paper-card {
+      width: 100%;
+    }
+
+
+
+  </style>
+  <template>
+    <article class="vertical layout">
+
+      <header id="event_header" class="vertical end-justified layout">
+        <div class="horizontal layout">
+          <paper-item><h1>Event name</h1></paper-item>
+        </div>
+        <div class="horizontal layout">
+          <div class="menu">
+            <paper-tabs selected="{{menu}}">
+              <paper-tab><paper-item><h3>Event</h3></paper-item></paper-tab>
+              <paper-tab><paper-item><h3>Registration</h3></paper-item></paper-tab>
+            </paper-tabs>
+          </div>
+        </div>
+
+      </header>
+      <iron-pages selected="{{menu}}">
+          <main>
+            <paper-card heading="Description"></paper-card>
+            <div style="height:30px"></div>
+            <paper-card heading="Rules"></paper-card>
+          </main>
+
+          <main>
+            <paper-card>
+              <div class="horizontal layout">
+                <paper-item>Register</paper-item>
+                <div class="flex"></div>
+                <div class="vertical center-justified layout">
+                  <paper-toggle-button></paper-toggle-button>
+                </div>
+                <div style="width:30px">
+
+                </div>
+
+              </div>
+            </paper-card>
+          </main>
+      </iron-pages>
+
+      <div class="flex"></div>
+      <div style="height: 100px"></div>
+      <div class="line"></div>
+
+
+
+
+      <footer>
+        <div class="horizontal layout">
           <div class="vertical layout">
-            <div class="name"><h2>Event Name</h2></div>
-
-              <div>
-              <paper-tabs selected="0">
-                <paper-tab>Event</paper-tab>
-                <paper-tab>Registration</paper-tab>
-              </paper-tabs>
-              <div>
+            <div>
+              <paper-item>Venue<paper-item>
+            </div>
+            <div class="horizontal layout">
+              <paper-item>Date</paper-item>
+              <paper-item>Time</paper-item>
+            </div>
 
           </div>
-
+          <div class="flex"></div>
+          <paper-item><h1>GATEWAYS 2015</h1></paper-item>
+          <div class="flex"></div>
+          <div class="vertical layout">
+            <div>
+            <paper-item>In Charge name<paper-item>
+            </div>
+            <paper-item>In Charge contact</paper-item>
+          </div>
         </div>
-        <div class="absolute container vertical layout">
-            <div class="logo"></div>
-        </div>
+      </footer>
+    </article>
 
-    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is : 'event-interface',
+
+      ready : function () {
+        this.menu = 0;
+        // var $ = this;
+        // var lastWidth = $.resizeHeader(window.innerWidth);
+        //
+        // console.log(document.body);
+        //
+        // document.addEventListener("click", function() {
+        //   console.log("resize");
+        //   if(lastWidth != window.innerWidth){
+        //     lastWidth = $.resizeHeader(window.innerWidth);
+        //   }
+        //   lastWidth = $.resizeHeader(window.innerWidth);
+        // });
+
+      },
+
+      resizeHeader : function (w) {
+
+        var wWidth = window.innerWidth;
+        var wHeight = window.innerHeight - 50;
+        console.log("resizing", window.innerWidth, window.innerHeight);
+        var header = this.$.event_header;
+        //console.log("header" , header.style);
+        //header.style.width = wWidth + "px";
+        header.style.height = this.pictureRatio(wWidth) + "px";
+        return wWidth;
+      },
+
+      pictureRatio : function (w) {
+        var ratio = (9/21);
+        return w * ratio;
+      }
+    });
+  </script>
 </dom-module>
-
-
-<script>
-  Polymer({
-    is : 'event-interface'
-  });
-</script>
