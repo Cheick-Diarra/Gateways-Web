@@ -1,0 +1,19 @@
+{
+    "event_name":"Video Making",
+    "description":"",
+    "tag_line":"LIGHTS CAMERA ACTION EDIT...!",
+    "date_time":[{"date":"21/09/2015","time":"11:00"}],
+    "teams_per_college":"2",
+    "img":"video_making.png",
+    "max":"2",
+    "min":"2",
+    "contact":{"name":"Leo Jose","email":"","mobile":"9035419124"},
+    "requirements":"Camera,music,pendrive,headphones",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"","rules":[
+                                        {"info":"Tools will be provided on the spot"},
+                                        {"info":"No other tools can be used"},
+                                        {"info":"Theme will be announced in the morning and all the required materials should be collected prior to the event."}
+                                        ]}
+                ]
+}

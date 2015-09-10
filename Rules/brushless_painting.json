@@ -1,0 +1,18 @@
+{
+    "event_name":"Brushless Painting",
+    "description":"An event which gets the Michealangelo out of you. Color the whole town pink, but you do that without a brush!",
+    "tag_line":"UNLEASH YOUR IMAGINATION",
+    "date_time":[{"date":"21/09/2015","time":"14:00-16:00"}],
+    "teams_per_college":"",
+    "img":"brushless_painting.png",
+    "max":"2",
+    "min":"2",
+    "contact":{"name":"Adithi Reddy","email":"","mobile":"7204376244"},
+    "requirements":"",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"Round 1","rules":[
+                                            {"info":"1 hour will be given to the participants to go around the college and find things that they can paint with. Example: dry leaves, straws , flowers,etc."},
+                                            {"info":"A quote will be given to the teams, they will get 2 hours of time to come up with the painting that interprets the quote."}
+                                            ]
+                    }]
+}

@@ -1,0 +1,20 @@
+{
+    "event_name":"Mobile App Development",
+    "description":"Mobile Application Development is an event in which computer programmers and other students involved in software development collaborate in order to produce a rich usable application within a day. The aim is to cultivate creativity, idea conception and team work. Participants given a theme, must form teams and present an application at the end of the allotted time.",
+    "tag_line":"APP THE GAP",
+    "date_time":[{"date":"21/09/2015","time":"11:00"}],
+    "teams_per_college":"",
+    "img":"app_development.png",
+    "max":"4",
+    "min":"1",
+    "contact":[
+                {"name":"Yogeshwar","email":"","mobile":"9743054014"}
+              ],
+    "requirements":"Computer for hosting repository server",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"General Rules","rules":[
+                                                    {"info":"Single round spread over a day, with judges evaluating progress at specific intervals."},
+                                                    {"info":"In case of a large number of participants, an elimination round lasting 15 minutes will be conducted."}
+                                                    ]}
+                ]
+}

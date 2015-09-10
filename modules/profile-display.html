@@ -25,10 +25,10 @@
     
     <iron-ajax
       id="registerAjax"
-      url="../services/signup.php"
+      url="../services/update_profile.php"
       method="post"
       handle-as="json"
-      on-response = "registerResponseReceived">
+      on-response = "updateResponseReceived">
     </iron-ajax>
     
     <iron-ajax
@@ -54,7 +54,6 @@
               </template>
             </paper-menu>
           </paper-dropdown-menu>
-          <paper-input id="password" value="{{profile.password}}" label="Password" disabled="true"></paper-input>
           <br><paper-item> Accommodation ? </paper-item><paper-checkbox id="accomodation" checked="{{profile.accomodation}}" disabled="true"></paper-checkbox>
           <br><paper-button id="loginButton" on-click="submit">Save</paper-button>
           <paper-toast id="toast" text="{{message}}"></paper-toast>
@@ -114,9 +113,25 @@
         }
     },
     
-    registerResponseReceived : function () {
+    updateResponseReceived : function () {
         var response = this.$.registerAjax.lastResponse;
         console.log("Response" , response);
+        if(response.status==1)
+        {
+            //Success
+            //Redirect to login page.
+        }
+        else if(response.status==2)
+        {
+            //error occurred during insertion
+            // display error
+            info("Error occurred during registering."); 
+        }
+        else if(response.status==3)
+        {
+            //email validation
+            info("Email Id is already registered"); 
+        }
     },
       
     collegeListReceived : function() {
@@ -130,7 +145,7 @@
         if(response != null )
         {
           this.profile = response;
-        this.collegeSelected=this.profile.college.college_id;
+          this.collegeSelected=this.profile.college.college_id;
         }
     },
     
@@ -145,7 +160,6 @@
         var last_name = this.$.last_name.value;
         var contact = this.$.contact.value;
         var email = this.$.email.value;
-        var password = this.$.password.value;
         var college = this.colleges[this.collegeSelected];
         var accomodation= this.$.accomodation.checked;
         console.log(college);
@@ -165,11 +179,6 @@
            all_fine=false;
            this.message="Please select a college";
         }
-        else if(password==="")
-        {
-           all_fine=false;
-           this.message="Password cannot be empty!";
-        }
         
         if(all_fine==true)
         {
@@ -178,7 +187,6 @@
             console.log("Register mobile number" , contact);
             console.log("Register id" , email);
             console.log("Register college",college.name);
-            console.log("Register password" , password);
             console.log("Register accomodation" , accomodation);
             
             var params = {};

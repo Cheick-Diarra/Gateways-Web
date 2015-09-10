@@ -1,0 +1,21 @@
+{
+    "event_name":"Treasure Hunt",
+    "description":"An event where your wit is your weapon. The treasure is his who finds it first. But to be first you need to think different.",
+    "tag_line":"BETTER YOU THINK, BETTER YOU FIND",
+    "date_time":[{"date":"21/09/2015","time":"14:00-16:00"}],
+    "teams_per_college":"1",
+    "img":"treasure_hunt.png",
+    "max":"4",
+    "min":"4",
+    "contact":[
+                {"name":"Siddharth Nambiar","email":"","mobile":"8892037266"}
+              ],
+    "requirements":"Nothing",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"Round 1","rules":[
+                                {"info":"Total time given will be 1.30 Hours"},
+                                {"info":"10 clues to be solved to reach the treasure. Clues can be in the form of riddles or tasks to be performed."},
+                                {"info":"Further rules will be announced on the day of the event."}
+                                 ]}
+                ]
+}

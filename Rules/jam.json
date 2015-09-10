@@ -1,0 +1,17 @@
+{
+    "event_name":"Just A Minute",
+    "description":"Just a Minute is an event that tests how well can a person speak about a topic without faltering and still be entertaining at the same time. If you believe you can speak without hesitation, deviation and repetition, this event is for you.",
+    "tag_line":"CAN YOU BE AWESOME IN A MINUTE?",
+    "date_time":[{"date":"21/09/2015","time":"11:30-12:30"},{"date":"22/09/2015","time":"13:00-15:00"}],
+    "teams_per_college":"",
+    "img":"jam.png",
+    "max":"2",
+    "min":"1",
+    "contact":{"name":"","email":"","mobile":"9986957945"},
+    "requirements":"Nothing",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"Round 1","rules":[{"info":"Pick n Speak-The speaker speaks about a topic for a minute. One minute of preparation time"}]},
+                 {"name":"Round 2","rules":[{"info":"Video Commentary- The speaks provides the voice over for a video"}]},
+                 {"name":"Round 3 (JAM)","rules":[{"info":"JAM- A speaker speaks without hesitation, deviation or repetition. This round will determine the winner"}]}
+                ]
+}

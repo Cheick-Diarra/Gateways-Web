@@ -1,0 +1,29 @@
+{
+    "event_name":"Mock Parliament",
+    "description":"",
+    "tag_line":"ARE YOU THINKING, WHAT WE ARE THINKING?",
+    "date_time":[{"date":"21/09/2015","time":"11:00-13:00"}],
+    "teams_per_college":"",
+    "img":"mock_parliament.png",
+    "max":"4",
+    "min":"4",
+    "contact":{"name":"Cedric","email":"","mobile":"8867665759"},
+    "requirements":"Nothing",
+    "no_of_rounds":"2",
+    "round_info":[ {"name":"Prelims","rules":[
+                                        {"info":"Maximum  4 speakers from each college."},
+                                        {"info":"Each speaker will be given a topic related to I.T or Current Affairs (His/Her choice)"},
+                                        {"info":"Speaker  will be given 1 minute and 30 seconds to speak on that topic."},
+                                        {"info":"Time allotted for each speaker may be increased or be cut down depending upon the number of participants."}
+                                        ]
+                  },
+                  {"name":"Finals","rules":[
+                                        {"info":"6 speakers will be selected for the final round."},
+                                        {"info":"These  6 speakers must form a team of two for the final round."},
+                                        {"info":"The selected speaker can select anyone from his/her college team who registered for Gateways."},
+                                        {"info":"Rules of the final round will be explained on the day of the event."},
+                                        {"info":"Topic of debate of the final round will be given on Day 1."}
+                                        ]
+                  }
+                ]
+}

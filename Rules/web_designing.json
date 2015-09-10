@@ -1,0 +1,19 @@
+{
+    "event_name":"Web Designing",
+    "description":"Are you good at designing a web site? Let's see if your skills come handy here.",
+    "tag_line":"YOUR FRIENDLY NEIGHBOUR",
+    "date_time":[{"date":"21/09/2015","time":"12:30-13:30"},{"date":"22/09/2015","time":"09:00-11:00"}],
+    "teams_per_college":"2",
+    "img":"web_designing.png",
+    "max":"2",
+    "min":"1",
+    "contact":{"name":"Ashish Koushik","email":"","mobile":"8147107768"},
+    "requirements":"Nothing",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"Round 1","rules":[
+                                                {"info":"Images will be provided during the event"},
+                                                {"info":"Topic is on spot"},
+                                                {"info":"Internet is not allowed"},
+                                                {"info":"Website should not contain any objectionable or profane content"}
+                                              ]}]
+}

@@ -1,0 +1,17 @@
+{
+    "event_name":"IT Manager",
+    "description":"Mobile Application Development is an event in which computer programmers and other students involved in software development collaborate in order to produce a rich usable application within a day. The aim is to cultivate creativity, idea conception and team work. Participants given a theme, must form teams and present an application at the end of the allotted time.",
+    "tag_line":"SO WHO'S THE BOSS?",
+    "date_time":[{"date":"21/09/2015","time":"14:00-15:30"},{"date":"22/09/2015","time":"09:00-11:00"}],
+    "teams_per_college":"",
+    "img":"it_manager.png",
+    "max":"3",
+    "min":"1",
+    "contact":{"name":"Aneesh M","email":"","mobile":"8105253643"},
+    "requirements":"Nothing",
+    "no_of_rounds":"3",
+    "round_info":[ {"name":"Round 1(Elimination Round)","rules":[{"info":"Will be announced on the day of Event"}]},
+                 {"name":"Round 2 (Skill Test)","rules":[{"info":"The participants will be given a set of products, and they have to sell the products in the university campus."}]},
+                 {"name":"Round 3 (Face Off)","rules":[{"info":"Stress Interview"}]}
+                ]
+}

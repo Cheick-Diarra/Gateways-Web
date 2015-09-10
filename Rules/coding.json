@@ -1,0 +1,25 @@
+{
+    "event_name":"Codifica",
+    "description":"Code your brains out. An event in which you mix logic with your coding skills. ",
+    "tag_line":"TALK IS CHEAP, SHOW ME THE CODE",
+    "date_time":[{"date":"21/09/2015","time":"11:00-12:00"},{"date":"21/09/2015","time":"14:00-16:00"}],
+    "teams_per_college":"",
+    "img":"coding.png",
+    "max":"2",
+    "min":"2",
+    "contact":{"name":"Amlanjyoti Saikia","email":"amlanjyoti.saikia@cs.christuniversity.in","mobile":"9740713951"},
+    "requirements":"Nothing",
+    "no_of_rounds":"2",
+    "round_info":[ {"name":"Test-To-Debug","rules":[{"info":"Base language: ANSI C, Base IDE: Bloodshed Dev-C++ 4.4.1 (or higher)"},
+                                               {"info":"Total of 5 challenges"},
+                                              {"info":"Solve each challenge level by level, no skipping questions"},
+                                              {"info":"Fastest 6 (might change depending on no. of teams participating) teams will qualify for the finals"}
+                                             ]},
+            {"name":"Code-It-Out","rules":[{"info":"Choice of compilers: ANSI C/ C++"},
+                                       {"info":"Base IDE: Bloodshed Dev-C++ 4.4.1 (or higher)"},
+                                       {"info":"Total of 6 problems"},
+                                       {"info":"Solve each problem level by level, no skipping questions"},
+                                       {"info":"Winners will be decided based on (decreasing order of priority):Time taken to conquer the problems.Logic competency.Execution efficiency of the program;Coding standards"}
+                                      ]}
+                ]
+}

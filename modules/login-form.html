@@ -9,63 +9,81 @@
   <style>
     #main
     {
+        min-width:300px;
         padding:10px;
-        min-width: 300px;
     }
   </style>
-
+  
   <template>
-
+  
     <iron-ajax
       id="loginAjax"
       url="../services/login.php"
       method="POST"
       handle-as="json"
-      on-response = "loginResponseReceived">
+      on-response = "loginResponseReceived"
+      on-error = "onErrorReceived">
     </iron-ajax>
-
+    
     <div id="main">
         <form is="iron-form" id="form" method="post" action="#">
-          <paper-input id="email" name="email" label="Email Id" type="email"></paper-input>
+          <paper-input id="email" name="email" label="Email Id" type="email" auto-validate></paper-input>
           <paper-input id="password" name="password" label="password" type="password"></paper-input>
-          <paper-toast id="toast" text="Email or Password is incorrect"></paper-toast>
+          <!--<br><paper-button id="loginButton" on-click="submit">Register</paper-button>
+          <paper-toast id="toast" text="Email or Password is incorrect"></paper-toast>-->
         </form>
     </div>
   </template>
-
+  
   <script>
     Polymer({
       is : 'login-form',
-
+      
      // collegeSelected: Number,
-
+      
       properties : {
-
+        
       },
-
+      
     loginResponseReceived : function () {
         var response = this.$.loginAjax.lastResponse;
         console.log("Response by login" , response);
-        if(response.success==="false")
-            this.$.toast.show();
+        if(response.status==="true")
+        {
+            info("Logged in");
+            //Redirect to page
+        }
         else
-        ;
+            info("Login unsuccessful");
     },
-
+    
+    onErrorReceived : function () {
+        var response = this.$.loginAjax.lastError;
+        console.log("Response by error: " , response.error.message);
+        info(response.error.message);
+    },
+    
     submit : function () {
         var email = this.$.email.value;
         var password = this.$.password.value;
-
-        console.log("Register id" , email);
-        console.log("Register password" , password);
-
-        var params = {};
-        params.email = email;
-        params.password = password;
-        console.log(params);
-        var ajax = this.$.loginAjax;
-        ajax.params = params;
-        ajax.generateRequest();
+        
+        if(this.$.email.invalid)
+            console.log("Invalid");
+        else 
+        {
+            console.log("Valid");
+            
+            console.log("Register id" , email);
+            console.log("Register password" , password);
+            
+            var params = {};
+            params.email = email;
+            params.password = password;
+            console.log(params);
+            var ajax = this.$.loginAjax;
+            ajax.params = params;
+            ajax.generateRequest();
+        }
       }
     });
   </script>

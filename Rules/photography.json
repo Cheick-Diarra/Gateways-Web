@@ -1,0 +1,23 @@
+{
+    "event_name":"Photography",
+    "description":"An event where in your photography skills will be tested.",
+    "tag_line":"IN THE LINE OF SIGHT",
+    "date_time":[{"date":"21/09/2015","time":"11:00"}],
+    "teams_per_college":"",
+    "img":"photography.png",
+    "max":"1",
+    "min":"1",
+    "contact":{"name":"Ramchander Tawker","email":"","mobile":"9591999756"},
+    "requirements":"any digital camera except mobile phones.",
+    "no_of_rounds":"1",
+    "round_info":[ {"name":"General Information","rules":[
+                                                            {"info":"Photographs must be taken inside the campus and on the same day of the competition"},
+                                                            {"info":"Maximum number of images to be submitted by an individual is 3 (In case of edited, submit both, before and after editing"},
+                                                            {"info":"Only basic processing (crop, brightness, contrase) will be allowed."},
+                                                            {"info":"Format of images to be submitted : Raw Format"},
+                                                            {"info":"Thought behind each photograph in 1 or 2 lines."},
+                                                            {"info":"Equipment : DSLR, Mobile Camera"}
+                                                         ]
+                  }
+                ]
+}

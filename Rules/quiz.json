@@ -1,0 +1,20 @@
+{
+    "event_name":"Quiz",
+    "description":"Lets test your general knowledge!",
+    "tag_line":"WHERE SMARTNESS TRUMPS INTELLIGENCE!",
+    "date_time":[{"date":"21/09/2015","time":"12:30-13:30"},{"date":"22/09/2015","time":"11:00-12:30"}],
+    "teams_per_college":"2",
+    "img":"quiz.png",
+    "max":"",
+    "min":"3",
+    "contact":{"name":"Anwesh Mishra","email":"","mobile":"9880706371"},
+    "requirements":"",
+    "no_of_rounds":"2",
+    "round_info":[ {"name":"Prelims","rules":[{"info":"20 Questions."},
+                                              {"info":"No fixed number for prelims"},
+                                              {"info":"Best team from each college selected for Finals"}
+                                              ]
+                   },
+                 {"name":"Finals","rules":[{"info":"Top 6 teams go through to the Finals."}]}
+                ]
+}

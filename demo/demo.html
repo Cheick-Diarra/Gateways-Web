@@ -32,6 +32,7 @@
     <link rel="import" href="../modules/event-register.html">
     <link rel="import" href="../modules/home-page.html">
     <link rel="import" href="../libraries/paper-toast/paper-toast.html">
+    <link rel="import" href="../modules/hash-router.html">
 
 
     <style>
@@ -127,45 +128,110 @@
         console.log(message);
         toast.show();
       }
+
+      var router = {
+
+        routing_table : [
+          'home',
+          'product_launch',
+          'jam',
+          'treasure_hunt',
+          'coding',
+          'photography',
+          'gaming',
+          'mock_parliament',
+          'web_designing',
+          'video_making',
+          'app_development',
+          'dumb_charades',
+          'quiz',
+          'it_manager',
+          'brushless_painting'
+        ],
+
+        hash_table : function (hash) {
+
+          if(hash == '#home') return 'home';
+          if(hash == '#product_launch') return 'product_launch';
+          if(hash == '#jam') return 'jam';
+          if(hash == '#treasure_hunt') return 'treasure_hunt';
+          if(hash == '#coding') return 'coding';
+          if(hash == '#photography') return 'photography';
+          if(hash == '#gaming') return 'gaming';
+          if(hash == '#mock_parliament') return 'mock_parliament';
+          if(hash == '#web_designing') return 'web_designing';
+          if(hash == '#video_making') return 'video_making';
+          if(hash == '#app_development') return 'app_development';
+          if(hash == '#dumb_charades') return 'dumb_charades';
+          if(hash == '#quiz') return  'quiz';
+          if(hash == '#it_manager') return 'it_manager';
+          if(hash == '#brushless_painting') return 'brushless_painting';
+
+        },
+
+        get : function (index) {
+
+          var id;
+
+          if ( typeof index === 'number' )
+            id = this.routing_table[index];
+          else if ( typeof index === 'string' ) {
+            console.log("Type String" , index);
+            id = this.hash_table(index);
+            console.log("id", id);
+          }
+          else return null;
+
+          if(id != undefined || id != null )
+            return document.getElementById(id);
+          else
+            return null;
+
+        },
+
+        getIndex : function (hash) {
+            //console.log("index" , he)
+           return this.routing_table.indexOf(hash.substr(1));
+        },
+
+        teg : function (index) {
+          return this.routing_table[index];
+        }
+      }
+
     </script>
   </head>
   <body>
 
-    <!-- <img-spriter id="kid1" size="500">
-      <img src="../resources/img/kid_walking_strips.png"/>
-    </img-spriter> -->
 
     <template is="dom-bind">
-
+      <hash-router selected="{{currentPage}}"></hash-router>
       <div class="container vertical end-justified layout">
-        <!-- <event-tooltip></event-tooltip> -->
 
         <div class="pages flex">
           <paper-toast id="toast"></paper-toast>
           <animated-page-loader selected="{{currentPage}}" >
-            <div class="container"><home-page></home-page></div>
-            <div class="container"><event-interface event-name="product_launch"></event-interface></div>
-            <div class="container"><event-interface event-name="jam"></event-interface></div>
-            <div class="container"><event-interface event-name="treasure_hunt"></event-interface></div>
-            <div class="container"><event-interface event-name="coding"></event-interface></div>
-            <div class="container"><event-interface event-name="photography"></event-interface></div>
-            <div class="container"><event-interface event-name="gaming"></event-interface></div>
-            <div class="container"><event-interface event-name="mock_parliament"></event-interface></div>
-            <div class="container"><event-interface event-name="web_designing"></event-interface></div>
-            <div class="container"><event-interface event-name="video_making"></event-interface></div>
-            <div class="container"><event-interface event-name="app_development"></event-interface></div>
-            <div class="container"><event-interface event-name="dumb_charades"></event-interface></div>
-            <div class="container"><event-interface event-name="quiz"></event-interface></div>
-            <div class="container"><event-interface event-name="it_manager"></event-interface></div>
-            <div class="container"><event-interface event-name="brushless_painting"></event-interface></div>
+            <div class="container"><home-page id="home"></home-page></div>
+            <div class="container"><event-interface id="product_launch" eventname="product_launch"></event-interface></div>
+            <div class="container"><event-interface id="jam" eventname="jam"></event-interface></div>
+            <div class="container"><event-interface id="treasure_hunt" eventname="treasure_hunt"></event-interface></div>
+            <div class="container"><event-interface id="coding" eventname="coding"></event-interface></div>
+            <div class="container"><event-interface id="photography" eventname="photography"></event-interface></div>
+            <div class="container"><event-interface id="gaming" eventname="gaming"></event-interface></div>
+            <div class="container"><event-interface id="mock_parliament" eventname="mock_parliament"></event-interface></div>
+            <div class="container"><event-interface id="web_designing" eventname="web_designing"></event-interface></div>
+            <div class="container"><event-interface id="video_making" eventname="video_making"></event-interface></div>
+            <div class="container"><event-interface id="app_development" eventname="app_development"></event-interface></div>
+            <div class="container"><event-interface id="dumb_charades" eventname="dumb_charades"></event-interface></div>
+            <div class="container"><event-interface id="quiz" eventname="quiz"></event-interface></div>
+            <div class="container"><event-interface id="it_manager" eventname="it_manager"></event-interface></div>
+            <div class="container"><event-interface id="brushless_painting" eventname="brushless_painting"></event-interface></div>
           </animated-page-loader>
         </div>
 
         <timeline-events selected="{{currentPage}}">
           <paper-fab icon="home" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <!-- <paper-fab icon="create" mini class="dot" toggles></paper-fab>
-          <div class=connect></div> -->
           <paper-fab icon="social:cake" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
           <paper-fab icon="image:timer" mini class="dot" toggles></paper-fab>
@@ -199,8 +265,5 @@
       </div>
     </template>
 
-  <!-- <script src="../libraries/impress.js-master/js/impress.js"></script>
-  <script>impress().init();</script>
-  <script>impress().goto(1);</script> -->
   </body>
 </html>

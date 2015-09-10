@@ -1,0 +1,14 @@
+{
+    "event_name":"Rápido y Furioso",
+    "description":"Multi-player and single player games. Let's see your survival strategy.",
+    "tag_line":"HERE'S SOME ADVICE, STAY ALIVE",
+    "date_time":[{"date":"21/09/2015","time":"14:00-15:30"},{"date":"22/09/2015","time":"11:00-13:00"}],
+    "teams_per_college":"",
+    "img":"gaming.png",
+    "max":"7",
+    "min":"5",
+    "contact":{"name":"Lijo Joby","email":"","mobile":"9620716001"},
+    "requirements":"Earphones, Mouse, Gamepad",
+    "no_of_rounds":"",
+    "round_info":[ {"name":"","rules":[{"info":""} ] } ]
+}

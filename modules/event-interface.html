@@ -89,8 +89,8 @@
     <iron-ajax
       id="dataLoaderAjax"
       url="../services/event_data.php"
+      method="get"
       handle-as="json"
-      params='{"event-name" : "{{event-name}}" }'
       last-response="{{event}}"
       on-response="_loadReceived"
       on-error="_loadError">
@@ -118,6 +118,15 @@
                 <p>{{event.description}}</p>
               </div>
             </paper-card>
+            <template is="dom-repeat" items="{{event.round_info}}">
+              <paper-card heading="{{item.name}}">
+                <div class="paper-content vertical layout">
+                  <template is="dom-repeat" items="{{item.rules}}">
+                    <paper-item>{{item.info}}</paper-item>
+                  </template>
+                </div>
+              </paper-card>
+            </template>
             <div style="height:30px"></div>
             <paper-card heading="Rules">
             </paper-card>
@@ -154,8 +163,8 @@
               <paper-item><iron-icon icon="communication:location-on"></iron-icon>&nbspVenue<paper-item>
             </div>
             <div class="horizontal layout">
-              <paper-item><iron-icon icon="today"></iron-icon>&nbspDate</paper-item>
-              <paper-item><iron-icon icon="schedule"></iron-icon>&nbspTime</paper-item>
+              <paper-item><iron-icon icon="today"></iron-icon>{{event.date_time.0.date}}</paper-item>
+              <paper-item><iron-icon icon="schedule"></iron-icon>{{event.date_time.0.time}}</paper-item>
             </div>
 
           </div>
@@ -164,9 +173,9 @@
           <div class="flex"></div>
           <div class="vertical layout">
             <div>
-            <paper-item><iron-icon icon="face"></iron-icon>&nbspIn Charge name<paper-item>
+            <paper-item><iron-icon icon="face"></iron-icon>{{event.contact.name}}<paper-item>
             </div>
-            <paper-item><iron-icon icon="communication:contact-phone"></iron-icon>&nbspIn Charge contact</paper-item>
+            <paper-item><iron-icon icon="communication:contact-phone"></iron-icon>{{event.contact.mobile}}</paper-item>
           </div>
         </div>
       </footer>
@@ -178,23 +187,32 @@
     Polymer({
       is : 'event-interface',
 
-      loaded : false;
+      loaded : false,
 
       properties : {
-        event : Object,
-        event-name : String
+        eventname : String
+      },    
+        
+      ready: function(){
+        console.log(this.eventname);
+        this.load();
       },
-
+      
       load : function () {
-        this.$.dataLoaderAjax.generateRequest();
+        var ajax=this.$.dataLoaderAjax;
+        var params={};
+        params.event_name=this.eventname;
+        ajax.params=params;
+        ajax.generateRequest();
       },
 
       _loadReceived : function () {
         this.loaded = true;
+        console.log(this.eventname,this.$.dataLoaderAjax.lastResponse);
       },
 
       findImg : function (path) {
-        var style = 'background-image: url("'+path+'")';
+        var style = 'background-image: url("../resources/img/'+path+'")';
         return style;
       }
     });

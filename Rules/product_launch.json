@@ -1,0 +1,24 @@
+{
+    "event_name":"Product Launch",
+    "description":"Can you sell a Pen? This event tests your marketing skills as well as your creativity and innovation",
+    "tag_line":"EXPERTISE YOUR PRODUCT, CUSTOMISE YOUR MARKET",
+    "date_time":[{"date":"21/09/2015","time":"11:00-13:00"}],
+    "teams_per_college":"1",
+    "img":"product_launch.png",
+    "max":"6",
+    "min":"6",
+    "contact":{"name":"Jose Alex","email":"","mobile":"8050001023"},
+    "requirements":"Nothing",
+    "no_of_rounds":"2",
+    "round_info":[ {"name":"Prelims","rules":[
+                                        {"info":"A participant will be given with an image, the task of the contestant is to introduce the product without using any of the technical terms that is related to it."}
+                                        ]
+                  },
+                  {"name":"Finals","rules":[
+                                        {"info":"10 minutes per team for product launch and 5 minutes for question and answer."},
+                                        {"info":"A statistical proposal to the panel of investors, describing cost of the product, manufacturing and market impact values."},
+                                        {"info":"Negative marks for exceeding time limit"}
+                                        ]
+                  }
+                ]
+}

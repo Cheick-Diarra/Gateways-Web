@@ -1,0 +1,35 @@
+{
+    "event_name":"Dumb Charades",
+    "description":"An event wherein your lip is zipped up. Convey your message via actions.",
+    "tag_line":"ACT AND REACT",
+    "date_time":[{"date":"21/09/2015","time":"11:00-13:30"}],
+    "teams_per_college":"",
+    "img":"dumb_charades.png",
+    "max":"15",
+    "min":"3",
+    "contact":{"name":"Rachana K P","email":"","mobile":"9036944914"},
+    "requirements":"Nothing",
+    "no_of_rounds":"3",
+    "round_info":[ {"name":"Round 1 (Normal DC Rules)","rules":[
+                                                            {"info":"3 members per team."},
+                                                            {"info":"The words are to be communicated using only gestures or actions."},
+                                                            {"info":"Chits will contain either technical or non-technical words."}, 
+                                                            {"info":"No alphabets or objects are to be indicated."},
+                                                            {"info":"One person comes to the front to get a chit from a pool of chits, and enact the word to the other two team members."},
+                                                            {"info":"The person acting should stand at least 2 feet away from the other team members.  The person can act only within a limited area designated to him or her."},
+                                                            {"info":"For each word being enacted, only one split will be allowed."},
+                                                            {"info":"For each team the time allotted will be 90 seconds per round, and within that time they can pick and enact the words from as many chits as they want."},
+                                                            {"info":"The six teams with maximum number of correct answers will qualify for the next round."}
+                                                        ]},
+                  {"name":"Round 2 (Pictionary Rules)","rules":[
+                                                            {"info":"The words are to be communicated by drawing symbols or figures on a white board using a marker. Writing letters or numbers in any language is not allowed."},
+                                                            {"info":"For each team the time allotted will be 90 seconds per round, and within that time they can pick and play Pictionary from as many chits as they want."},
+                                                            {"info":"The three teams with maximum number of correct answers will qualify for the finals."}
+                                                        ]},
+                  {"name":"Round 3 (Mirror Rules)","rules":[
+                                                            {"info":"One member of a team would be miming a word and another member would just 'mirror'/copy his action and third member who would be seeing this copy has to find out the word."},
+                                                            {"info":"The single team with the most points wins."},
+                                                            {"info":"If there is a tie at the end of any round, a normal round of DC will be held to decide the winner."}
+                                                        ]}
+                ]
+}
