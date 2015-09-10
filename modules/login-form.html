@@ -1,0 +1,72 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/iron-form/iron-form.html">
+<link rel="import" href="../libraries/paper-input/paper-input.html">
+<link rel="import" href="../libraries/paper-button/paper-button.html">
+<link rel="import" href="../libraries/paper-toast/paper-toast.html">
+<link rel="import" href="../libraries/iron-ajax/iron-ajax.html"/>
+<dom-module id="login-form">
+
+  <style>
+    #main
+    {
+        padding:10px;
+        min-width: 300px;
+    }
+  </style>
+
+  <template>
+
+    <iron-ajax
+      id="loginAjax"
+      url="../services/login.php"
+      method="POST"
+      handle-as="json"
+      on-response = "loginResponseReceived">
+    </iron-ajax>
+
+    <div id="main">
+        <form is="iron-form" id="form" method="post" action="#">
+          <paper-input id="email" name="email" label="Email Id" type="email"></paper-input>
+          <paper-input id="password" name="password" label="password" type="password"></paper-input>
+          <paper-toast id="toast" text="Email or Password is incorrect"></paper-toast>
+        </form>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is : 'login-form',
+
+     // collegeSelected: Number,
+
+      properties : {
+
+      },
+
+    loginResponseReceived : function () {
+        var response = this.$.loginAjax.lastResponse;
+        console.log("Response by login" , response);
+        if(response.success==="false")
+            this.$.toast.show();
+        else
+        ;
+    },
+
+    submit : function () {
+        var email = this.$.email.value;
+        var password = this.$.password.value;
+
+        console.log("Register id" , email);
+        console.log("Register password" , password);
+
+        var params = {};
+        params.email = email;
+        params.password = password;
+        console.log(params);
+        var ajax = this.$.loginAjax;
+        ajax.params = params;
+        ajax.generateRequest();
+      }
+    });
+  </script>
+</dom-module>

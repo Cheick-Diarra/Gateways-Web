@@ -5,6 +5,9 @@
 <link rel="import" href="../libraries/paper-card/paper-card.html">
 <link rel="import" href="../libraries/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../libraries/iron-pages/iron-pages.html">
+<link rel="import" href="../libraries/iron-icons/iron-icons.html">
+<link rel="import" href="../libraries/iron-icon/iron-icon.html">
+<link rel="import" href="../libraries/iron-ajax/iron-ajax.html">
 
 <dom-module id="event-interface">
   <style>
@@ -13,10 +16,11 @@
       height: 100%;
     }
     header {
-      background-image: url("gaming.png");
+      background-image: url("AppDev.png");
       background-color: #34495e;
       width: 100%;
       height: 350px;
+      background-position: center;
     }
 
     footer {
@@ -43,10 +47,12 @@
 
     h1 {
       font-weight: 300;
+      font-size: 2em;
     }
 
-    h3 {
-      font-weight: lighter;
+    span {
+      font-weight: 300;
+      font-size: 1.4em;
     }
 
     div.menu {
@@ -72,21 +78,34 @@
       width: 100%;
     }
 
+    div.paper-content {
+      margin: 10px;
+    }
+
 
 
   </style>
   <template>
+    <iron-ajax
+      id="dataLoaderAjax"
+      url="../services/event_data.php"
+      handle-as="json"
+      params='{"event-name" : "{{event-name}}" }'
+      last-response="{{event}}"
+      on-response="_loadReceived"
+      on-error="_loadError">
+    </iron-ajax>
     <article class="vertical layout">
 
-      <header id="event_header" class="vertical end-justified layout">
+      <header id="event_header" style$="{{findImg(event.img)}}"  class="vertical end-justified layout">
         <div class="horizontal layout">
-          <paper-item><h1>Event name</h1></paper-item>
+          <paper-item><h1>{{event.event_name}}</h1></paper-item>
         </div>
         <div class="horizontal layout">
           <div class="menu">
             <paper-tabs selected="{{menu}}">
-              <paper-tab><paper-item><h3>Event</h3></paper-item></paper-tab>
-              <paper-tab><paper-item><h3>Registration</h3></paper-item></paper-tab>
+              <paper-tab><paper-item><span>Event</span></paper-item></paper-tab>
+              <paper-tab><paper-item><span>Registration</span></paper-item></paper-tab>
             </paper-tabs>
           </div>
         </div>
@@ -94,9 +113,14 @@
       </header>
       <iron-pages selected="{{menu}}">
           <main>
-            <paper-card heading="Description"></paper-card>
+            <paper-card heading="{{event.tag_line}}">
+              <div class="paper-content">
+                <p>{{event.description}}</p>
+              </div>
+            </paper-card>
             <div style="height:30px"></div>
-            <paper-card heading="Rules"></paper-card>
+            <paper-card heading="Rules">
+            </paper-card>
           </main>
 
           <main>
@@ -127,11 +151,11 @@
         <div class="horizontal layout">
           <div class="vertical layout">
             <div>
-              <paper-item>Venue<paper-item>
+              <paper-item><iron-icon icon="communication:location-on"></iron-icon>&nbspVenue<paper-item>
             </div>
             <div class="horizontal layout">
-              <paper-item>Date</paper-item>
-              <paper-item>Time</paper-item>
+              <paper-item><iron-icon icon="today"></iron-icon>&nbspDate</paper-item>
+              <paper-item><iron-icon icon="schedule"></iron-icon>&nbspTime</paper-item>
             </div>
 
           </div>
@@ -140,9 +164,9 @@
           <div class="flex"></div>
           <div class="vertical layout">
             <div>
-            <paper-item>In Charge name<paper-item>
+            <paper-item><iron-icon icon="face"></iron-icon>&nbspIn Charge name<paper-item>
             </div>
-            <paper-item>In Charge contact</paper-item>
+            <paper-item><iron-icon icon="communication:contact-phone"></iron-icon>&nbspIn Charge contact</paper-item>
           </div>
         </div>
       </footer>
@@ -154,38 +178,24 @@
     Polymer({
       is : 'event-interface',
 
-      ready : function () {
-        this.menu = 0;
-        // var $ = this;
-        // var lastWidth = $.resizeHeader(window.innerWidth);
-        //
-        // console.log(document.body);
-        //
-        // document.addEventListener("click", function() {
-        //   console.log("resize");
-        //   if(lastWidth != window.innerWidth){
-        //     lastWidth = $.resizeHeader(window.innerWidth);
-        //   }
-        //   lastWidth = $.resizeHeader(window.innerWidth);
-        // });
+      loaded : false;
 
+      properties : {
+        event : Object,
+        event-name : String
       },
 
-      resizeHeader : function (w) {
-
-        var wWidth = window.innerWidth;
-        var wHeight = window.innerHeight - 50;
-        console.log("resizing", window.innerWidth, window.innerHeight);
-        var header = this.$.event_header;
-        //console.log("header" , header.style);
-        //header.style.width = wWidth + "px";
-        header.style.height = this.pictureRatio(wWidth) + "px";
-        return wWidth;
+      load : function () {
+        this.$.dataLoaderAjax.generateRequest();
       },
 
-      pictureRatio : function (w) {
-        var ratio = (9/21);
-        return w * ratio;
+      _loadReceived : function () {
+        this.loaded = true;
+      },
+
+      findImg : function (path) {
+        var style = 'background-image: url("'+path+'")';
+        return style;
       }
     });
   </script>

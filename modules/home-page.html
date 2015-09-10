@@ -1,0 +1,171 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/neon-animation/neon-animation.html">
+<link rel="import" href="../libraries/neon-animation/neon-animations.html">
+<link rel="import" href="../libraries/paper-item/paper-item.html">
+<link rel="import" href="../libraries/iron-selector/iron-selector.html">
+<link rel="import" href="../libraries/paper-dialog/paper-dialog.html">
+<link rel="import" href="../libraries/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="./login-form.html">
+<link rel="import" href="./reg-form.html">
+
+<dom-module id="home-page">
+
+  <style>
+
+    article {
+      width: 100%;
+      height: 100%;
+      color : white;
+      background-color: #34495e;
+    }
+
+    div  h2 {
+      font-size: 2em;
+      font-weight: 300;
+    }
+
+    div  h1 {
+      font-size: 6em;
+      font-weight: 300;
+    }
+
+    #present {
+      margin-top: -30px;
+    }
+
+
+    div.logo {
+      background-image: url("logo.png");
+      width: 266px;
+      height: 107px;
+    }
+
+    iron-selector paper-item {
+      color : white;
+      font-size: 1.6em;
+      font-weight: 300;
+      cursor: pointer;
+    }
+
+    div.short {
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+
+  </style>
+
+  <template>
+    <paper-dialog id="loginDialog" with-backdrop>
+      <h2>Login</h2>
+      <paper-dialog-scrollable>
+        <login-form id="logf"></login-form>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button on-click="login" dialog-confirm>Login</paper-button>
+      </div>
+      <br>
+    </paper-dialog>
+    <paper-dialog id="signUpDialog" modal>
+      <h2>Sign Up for Gateways</h2>
+      <div class="short">
+        <paper-dialog-scrollable>
+          <reg-form id="regf"></reg-form>
+        </paper-dialog-scrollable>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button on-click="register">Register</paper-button>
+      </div>
+      <br>
+    </paper-dialog>
+    <article class="vertical layout">
+      <header>
+        <div style="height:20px"></div>
+        <div class="horizontal layout">
+          <paper-item><div id=logo class="logo" on-click="animate"></div></paper-item>
+          <div class="flex"></div>
+          <iron-selector class="horizontal layout">
+              <paper-item on-click="openLogin">Login</paper-item>
+              <paper-item on-click="openSignUp">Sign Up</paper-item>
+
+          </iron-selector>
+          <div style="width:20px;"></div>
+        </div>
+
+      </header>
+      <div style="height:10%"></div>
+      <main>
+          <div id="department" class="horizontal center-justified layout">
+            <paper-item><h2>Department of Computer Science</h2></paper-item>
+          </div>
+          <div id="present" class="horizontal center-justified layout">
+          <paper-item><h5>PRESENTS</h5></paper-item>
+          </div>
+          <div id="gateways" class="horizontal center-justified layout">
+          <paper-item><h1>GATEWAYS 2015</h1></paper-item>
+          </div>
+        </div>
+      </main>
+      <div class="flex"></div>
+      <footer></footer>
+
+    </article>
+
+  </template>
+
+  <script>
+    Polymer({
+      is : 'home-page',
+
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+
+      properties: {
+        animationConfig: {
+          value: function() {
+            return {
+              // provided by neon-animation/animations/scale-down-animation.html
+              name: 'slide-down-animation',
+              node: this.$.department
+            }
+          }
+        }
+    },
+
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+
+      openLogin : function() {
+        //info("Login");
+        this.$.loginDialog.toggle();
+      },
+
+      openSignUp : function() {
+        this.$.signUpDialog.toggle();
+      },
+
+      ready : function() {
+        this.animate();
+      },
+
+      login : function () {
+        this.$.logf.submit();
+      },
+
+      register : function () {
+        this.$.regf.submit();
+      },
+
+      animate: function() {
+          this.playAnimation();
+      },
+
+      _onNeonAnimationFinish: function() {
+          console.log('animation done!');
+      }
+    });
+  </script>
+
+</dom-module>

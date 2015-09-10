@@ -1,0 +1,204 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/iron-form/iron-form.html">
+<link rel="import" href="../libraries/paper-input/paper-input.html">
+<link rel="import" href="../libraries/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../libraries/paper-button/paper-button.html">
+<link rel="import" href="../libraries/iron-ajax/iron-ajax.html"/>
+<dom-module id="profile-display">
+
+  <style>
+    #main
+    {
+        background-color:#F1F1F1;
+        padding:10px;
+    }
+  </style>
+  
+  <template>
+    <iron-ajax
+      auto
+      id="collegeAjax"
+      url="../services/collegeList.php"
+      handle-as="json"
+      on-response = "collegeListReceived">
+    </iron-ajax>
+    
+    <iron-ajax
+      id="registerAjax"
+      url="../services/signup.php"
+      method="post"
+      handle-as="json"
+      on-response = "registerResponseReceived">
+    </iron-ajax>
+    
+    <iron-ajax
+        auto
+      id="profileAjax"
+      url="../services/profile.php"
+      method="POST"
+      handle-as="json"
+      on-response = "profileResponseReceived">
+    </iron-ajax>
+    
+    <div id="main">
+    <paper-item> Edit </paper-item><paper-toggle-button on-change="toggle" id="edit"></paper-toggle-button>
+        <form is="iron-form" id="form" method="post" action="#">
+          <paper-input id="first_name" value="{{profile.first_name}}" label="First Name" disabled="true"></paper-input>
+          <paper-input id="last_name" value="{{profile.last_name}}" label="Last Name" disabled="true"></paper-input>
+          <paper-input id="contact" pattern="^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$" error-message="Just 10 digits" auto-validate value="{{profile.contact}}" label="Contact" disabled="true"></paper-input>
+          <paper-input id="email" type="email" error-message="Not valid" auto-validate value="{{profile.email}}" label="Email" disabled="true"></paper-input>
+          <paper-dropdown-menu id="colleges" label="College" disabled="true">
+            <paper-menu class="dropdown-content" selected="{{collegeSelected}}">
+              <template is="dom-repeat" items="{{colleges}}">
+                <paper-item value="{{item}}">{{item.name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-input id="password" value="{{profile.password}}" label="Password" disabled="true"></paper-input>
+          <br><paper-item> Accommodation ? </paper-item><paper-checkbox id="accomodation" checked="{{profile.accomodation}}" disabled="true"></paper-checkbox>
+          <br><paper-button id="loginButton" on-click="submit">Save</paper-button>
+          <paper-toast id="toast" text="{{message}}"></paper-toast>
+        </form>
+        <label>EVENTS:</label><br>
+        <template is="dom-repeat" items="{{profile.events}}">
+            <div><span>{{item.name}}</span></div>
+        </template>
+    </div>
+  </template>
+  
+  <script>
+    Polymer({
+      is : 'profile-display',
+      
+      properties : {
+        
+        collegeSelected:Number,
+        
+        all_fine:Boolean,
+        
+        edit_tr:Boolean,
+        
+        profile:{
+            type:Object,
+            notify:true
+        },
+        
+        colleges:{
+            type:Object,
+            notify:true
+        }
+      },
+      
+    toggle:function(){
+        if(this.edit_tr==true)
+        {
+            this.edit_tr=false;
+            
+            this.$.first_name.disabled=true;
+            this.$.last_name.disabled=true;
+            this.$.contact.disabled=true;
+            this.$.email.disabled=true;
+            this.$.colleges.disabled=true;
+            this.$.accomodation.disabled=true;
+            
+        }
+        else
+        {
+            this.edit_tr=true;
+            this.$.first_name.disabled=false;
+            this.$.last_name.disabled=false;
+            this.$.contact.disabled=false;
+            this.$.email.disabled=false;
+            this.$.colleges.disabled=false;
+            this.$.accomodation.disabled=false;
+        }
+    },
+    
+    registerResponseReceived : function () {
+        var response = this.$.registerAjax.lastResponse;
+        console.log("Response" , response);
+    },
+      
+    collegeListReceived : function() {
+      var response = this.$.collegeAjax.lastResponse;
+      if(response != null )
+        this.colleges = response;
+    },
+      
+    profileResponseReceived : function () {
+       var response = this.$.profileAjax.lastResponse;
+        if(response != null )
+        {
+          this.profile = response;
+        this.collegeSelected=this.profile.college.college_id;
+        }
+    },
+    
+    ready : function(){
+        this.edit_tr=false;
+    },
+    
+    submit : function () {
+        var all_fine=true;
+        
+        var first_name = this.$.first_name.value;
+        var last_name = this.$.last_name.value;
+        var contact = this.$.contact.value;
+        var email = this.$.email.value;
+        var password = this.$.password.value;
+        var college = this.colleges[this.collegeSelected];
+        var accomodation= this.$.accomodation.checked;
+        console.log(college);
+        if(first_name==="")
+        {
+           all_fine=false;
+           this.message="First name cannot be empty";
+           this.$.first_name.focus();
+        }
+        else if(email==="")
+        {
+           all_fine=false;
+           this.message="Email is required";
+        }
+        else if(college==null)
+        {
+           all_fine=false;
+           this.message="Please select a college";
+        }
+        else if(password==="")
+        {
+           all_fine=false;
+           this.message="Password cannot be empty!";
+        }
+        
+        if(all_fine==true)
+        {
+            console.log("Register first name" , first_name);
+            console.log("Register last name" , last_name);
+            console.log("Register mobile number" , contact);
+            console.log("Register id" , email);
+            console.log("Register college",college.name);
+            console.log("Register password" , password);
+            console.log("Register accomodation" , accomodation);
+            
+            var params = {};
+            params.first_name = first_name;
+            params.last_name = last_name;
+            params.email = email;
+            params.contact=contact;
+            params.password = password;
+            params.accomodation=accomodation;
+            params.college_id=college.id;
+            
+            var ajax = this.$.registerAjax;
+            ajax.params = params;
+            ajax.generateRequest();
+        }
+        else
+        {
+            this.$.toast.show();
+        }
+      }
+    });
+  </script>
+</dom-module>

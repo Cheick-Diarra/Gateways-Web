@@ -30,6 +30,8 @@
     <link rel="import" href="../libraries/font-roboto/roboto.html">
     <link rel="import" href="../modules/event-interface.html">
     <link rel="import" href="../modules/event-register.html">
+    <link rel="import" href="../modules/home-page.html">
+    <link rel="import" href="../libraries/paper-toast/paper-toast.html">
 
 
     <style>
@@ -107,13 +109,23 @@
         background: white;
       }
 
+      paper-toast {
+        bottom : 75px;
+        z-index: 999;
+      }
+
 
     </style>
     <script>
-      function equal( first , second ) {
-        if(first===second)
-          return true;
-        return false;
+
+      function info(message) {
+
+        console.log("info");
+        var toast = document.getElementById("toast");
+        toast.text = message;
+        console.log(toast);
+        console.log(message);
+        toast.show();
       }
     </script>
   </head>
@@ -124,52 +136,65 @@
     </img-spriter> -->
 
     <template is="dom-bind">
+
       <div class="container vertical end-justified layout">
         <!-- <event-tooltip></event-tooltip> -->
 
         <div class="pages flex">
-          <animated-page-loader selected="{{currentPage}}" toSelect="div">
-            <div class="container"><h1>First Page</h1></div>
-            <div class="container"><event-register size="hello world this is me" > </event-register> </div>
-            <div class="container"><event-interface></event-interface></div>
-            <div class="container"><h1>Fourth Page</h1></div>
-            <div class="container"><h1>Fifth Page</h1></div>
-            <div class="container"><h1>Sixth Page</h1></div>
+          <paper-toast id="toast"></paper-toast>
+          <animated-page-loader selected="{{currentPage}}" >
+            <div class="container"><home-page></home-page></div>
+            <div class="container"><event-interface event-name="product_launch"></event-interface></div>
+            <div class="container"><event-interface event-name="jam"></event-interface></div>
+            <div class="container"><event-interface event-name="treasure_hunt"></event-interface></div>
+            <div class="container"><event-interface event-name="coding"></event-interface></div>
+            <div class="container"><event-interface event-name="photography"></event-interface></div>
+            <div class="container"><event-interface event-name="gaming"></event-interface></div>
+            <div class="container"><event-interface event-name="mock_parliament"></event-interface></div>
+            <div class="container"><event-interface event-name="web_designing"></event-interface></div>
+            <div class="container"><event-interface event-name="video_making"></event-interface></div>
+            <div class="container"><event-interface event-name="app_development"></event-interface></div>
+            <div class="container"><event-interface event-name="dumb_charades"></event-interface></div>
+            <div class="container"><event-interface event-name="quiz"></event-interface></div>
+            <div class="container"><event-interface event-name="it_manager"></event-interface></div>
+            <div class="container"><event-interface event-name="brushless_painting"></event-interface></div>
           </animated-page-loader>
         </div>
 
         <timeline-events selected="{{currentPage}}">
           <paper-fab icon="home" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <paper-fab icon="create" mini class="dot" toggles></paper-fab>
-          <div class=connect></div>
-          <paper-fab icon="device:developer-mode" mini class="dot" toggles></paper-fab>
-          <div class=connect></div>
-          <paper-fab icon="code" mini class="dot" toggles></paper-fab>
-          <div class=connect></div>
-          <paper-fab icon="image:camera-roll" mini class="dot" toggles></paper-fab>
+          <!-- <paper-fab icon="create" mini class="dot" toggles></paper-fab>
+          <div class=connect></div> -->
+          <paper-fab icon="social:cake" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
           <paper-fab icon="image:timer" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
           <paper-fab icon="explore" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <paper-fab icon="image:color-lens" mini class="dot" toggles></paper-fab>
+          <paper-fab icon="code" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
           <paper-fab icon="image:camera" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <paper-fab icon="communication:forum" mini class="dot" toggles></paper-fab>
-          <div class=connect></div>
           <paper-fab icon="av:games" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <paper-fab icon="notification:sms" mini class="dot" toggles></paper-fab>
-          <div class=connect></div>
-          <paper-fab icon="work" mini class="dot" toggles></paper-fab>
+          <paper-fab icon="communication:forum" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
           <paper-fab icon="language" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
+          <paper-fab icon="image:camera-roll" mini class="dot" toggles></paper-fab>
+          <div class=connect></div>
+          <paper-fab icon="device:developer-mode" mini class="dot" toggles></paper-fab>
+          <div class=connect></div>
+          <paper-fab icon="notification:sms" mini class="dot" toggles></paper-fab>
+          <div class=connect></div>
           <paper-fab icon="social:school" mini class="dot" toggles></paper-fab>
           <div class=connect></div>
-          <paper-fab icon="social:cake" mini class="dot" toggles></paper-fab>
+          <paper-fab icon="work" mini class="dot" toggles></paper-fab>
+          <div class=connect></div>
+          <paper-fab icon="image:color-lens" mini class="dot" toggles></paper-fab>
+
+
         </timeline-events>
       </div>
     </template>

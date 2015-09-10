@@ -1,0 +1,182 @@
+<link rel="import" href="../libraries/polymer/polymer.html">
+<link rel="import" href="../libraries/iron-form/iron-form.html">
+<link rel="import" href="../libraries/paper-input/paper-input.html">
+<link rel="import" href="../libraries/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../libraries/paper-dropdown-menu/paper-dropdown-menu.html"/>
+<link rel="import" href="../libraries/paper-button/paper-button.html">
+<link rel="import" href="../libraries/paper-menu/paper-menu.html">
+<link rel="import" href="../libraries/paper-toast/paper-toast.html">
+<link rel="import" href="../libraries/paper-item/paper-item.html">
+<link rel="import" href="../libraries/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../libraries/iron-ajax/iron-ajax.html"/>
+<dom-module id="reg-form">
+  <style>
+    #main
+    {
+        padding:10px;
+        min-width: 300px;
+    }
+  </style>
+
+  <template>
+
+    <iron-ajax
+      auto
+      id="collegeAjax"
+      url="../services/collegeList.php"
+      handle-as="json"
+      on-response = "collegeListReceived">
+    </iron-ajax>
+
+    <iron-ajax
+      id="registerAjax"
+      url="../services/signup.php"
+      method="post"
+      handle-as="json"
+      on-response = "registerResponseReceived">
+    </iron-ajax>
+
+    <div id="main">
+        <form is="iron-form" id="form" method="post" action="#">
+          <paper-input id="first_name" name="first_name" label="First Name"></paper-input>
+          <paper-input id="last_name" name="last_name" label="Last Name" required></paper-input>
+          <div class="horizontal center-justified layout">
+          <paper-radio-group id="gender">
+            <paper-radio-button name="male">Male</paper-radio-button>
+            <paper-radio-button name="female">Female</paper-radio-button>
+          </paper-radio-group>
+        </div>
+          <paper-input id="contact" name="contact" label="Mobile Number" pattern="^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$" error-message="Just 10 digits" auto-validate></paper-input>
+          <paper-input id="email" name="email" label="Email Id" type="email" error-message="Not valid" auto-validate></paper-input>
+
+          <paper-dropdown-menu id="colleges" label="College" >
+            <paper-menu class="dropdown-content" selected="{{collegeSelected}}">
+              <template is="dom-repeat" items="{{colleges}}">
+                <paper-item value="{{item}}">{{item.name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-input id="password" name="password" label="Password" type="password"></paper-input>
+          <paper-input id="con_password" name="con_password" label="Confirm Password" type="password" on-blur></paper-input>
+          <div class="horizontal layout">
+            <div class="vertical center-justified layout">
+              <paper-item>Accommodation</paper-item>
+            </div>
+            <div class="flex"></div>
+            <div class="vertical center-justified layout">
+              <paper-toggle-button id="accomodation"></paper-toggle-button>
+            </div>
+            <div class="flex"></div>
+          </div>
+          <paper-toast id="toast" text="{{message}}"></paper-toast>
+        </form>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is : 'reg-form',
+
+      collegeSelected:Number,
+
+      properties : {
+        message:String,
+        colleges : {
+          type : Object,
+          notify : true
+        }
+      },
+
+    ready : function()
+    {
+
+    },
+
+    registerResponseReceived : function () {
+        var response = this.$.registerAjax.lastResponse;
+        console.log("Response" , response);
+
+    },
+
+      collegeListReceived : function() {
+        var response = this.$.collegeAjax.lastResponse;
+        console.log("Colleges",response);
+        if(response != null )
+          this.colleges = response;
+
+      },
+
+    submit : function () {
+        console.log("submiting");
+        var all_fine=true;
+
+        var first_name = this.$.first_name.value;
+        var last_name = this.$.last_name.value;
+        var contact = this.$.contact.value;
+        var email = this.$.email.value;
+        var password = this.$.password.value;
+        var con_password = this.$.con_password.value;
+        var genderId = this.$.gender.selected;
+        //var college = this.colleges[this.collegeSelected];
+        var accomodation= this.$.accomodation.checked;
+        if(first_name==="")
+        {
+           all_fine=false;
+           this.message="First name cannot be empty";
+           this.$.first_name.focus();
+        }
+        else if(email==="")
+        {
+           all_fine=false;
+           this.message="Email is required";
+        }
+        // else if(college==null)
+        // {
+        //    all_fine=false;
+        //    this.message="Please select a college";
+        // }
+        else if(!password===con_password)
+        {
+           all_fine=false;
+           this.message="Passwords do not match!";
+        }
+        else if(password===""||con_password==="")
+        {
+           all_fine=false;
+           this.message="Password cannot be empty!";
+        }
+
+        if(all_fine==true)
+        {
+            console.log("Register first name" , first_name);
+            console.log("Register last name" , last_name);
+            console.log("Register genderId" , genderId);
+            console.log("Register mobile number" , contact);
+            console.log("Register id" , email);
+            //console.log("Register college",college.name);
+            console.log("Register password" , password);
+            console.log("Register accomodation" , accomodation);
+
+            var params = {};
+            params.first_name = first_name;
+            params.last_name = last_name;
+            params.email = email;
+            params.contact=contact;
+            params.password = password;
+            params.gender = genderId;
+            params.accomodation=accomodation;
+            //params.college_id=college.id;
+
+            var ajax = this.$.registerAjax;
+            ajax.params = params;
+            ajax.generateRequest();
+        }
+        else
+        {
+            this.$.toast.show();
+        }
+      }
+
+    });
+  </script>
+</dom-module>

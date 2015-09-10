@@ -1,0 +1,51 @@
+
+<dom-module id="hash-router">
+  <style>
+    :host {
+      display: none;
+    }
+  </style>
+  <script>
+    Polymer({
+      is : 'hash-router',
+
+      properties : {
+
+        selected : {
+          type : Number,
+          notify : true
+        }
+      },
+
+      ready : function () {
+        var host = this;
+        window.addEventListener("hashchange", function () {
+
+          console.log("hash changed");
+
+          if(location.hash === '#login') {
+            console.log("hash changed to login");
+            host.selected = 0;
+            console.log(this);
+          }
+          else if( location.hash === '#register' ) {
+            host.selected = 1;
+          }
+          else if( location.hash === '#survey' ) {
+            host.selected = 2;
+            host.$.surveyPage.load();
+          }
+          else if(location.hash === '#participate') {
+            host.selected = 3;
+          }
+          else if(location.hash === '#create') {
+            host.selected = 4;
+          }
+          else {
+            host.selected = 0;
+          }
+        }, true);
+      }
+    });
+  </script>
+</dom-module>
